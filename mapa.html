@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Mapa Vital</title>
+    <style>
+        html, body, #map {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+    // Inicializa o mapa centrado inicialmente em Luanda
+    var map = L.map('map').setView([-8.84, 13.23], 15);
+    var marker = L.marker([-8.84, 13.23]).addTo(map);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    }).addTo(map);
+
+    // Função chamada pelo C#
+    function atualizarLocal(lat, lon) {
+      map.setView([lat, lon], 15);
+      marker.setLatLng([lat, lon]);
+    }
+
+    // Expõe a função para acesso externo (CefSharp)
+    window.atualizarLocal = atualizarLocal;
+    </script>
+</body>
+</html>
