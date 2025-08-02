@@ -25,7 +25,7 @@ Linguagem: C#
 
 Comunicação: SerialPort (System.IO.Ports)
 
-Banco de dados: SQLite
+Banco de dados: SQLite.
 
 Mapa: WebBrowser + HTML
 
